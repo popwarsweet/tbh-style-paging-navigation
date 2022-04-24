@@ -12,11 +12,11 @@
 		27B23FBC280D4254005A15AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27B23FBA280D4254005A15AF /* Main.storyboard */; };
 		27B23FBE280D4255005A15AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27B23FBD280D4255005A15AF /* Assets.xcassets */; };
 		27B23FC1280D4255005A15AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27B23FBF280D4255005A15AF /* LaunchScreen.storyboard */; };
-		27B23FE6281585BB005A15AF /* PagingCarouselNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B23FE1281585BB005A15AF /* PagingCarouselNavigationView.swift */; };
-		27B23FE7281585BB005A15AF /* UIViewEasyConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B23FE2281585BB005A15AF /* UIViewEasyConstraints.swift */; };
-		27B23FE8281585BB005A15AF /* PagingCarouselContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B23FE3281585BB005A15AF /* PagingCarouselContainerView.swift */; };
-		27B23FE9281585BB005A15AF /* SpringButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B23FE4281585BB005A15AF /* SpringButton.swift */; };
-		27B23FEA281585BB005A15AF /* BadgedSpringButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B23FE5281585BB005A15AF /* BadgedSpringButton.swift */; };
+		27B24013281586ED005A15AF /* PagingCarouselNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B2400E281586ED005A15AF /* PagingCarouselNavigationView.swift */; };
+		27B24014281586ED005A15AF /* UIViewEasyConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B2400F281586ED005A15AF /* UIViewEasyConstraints.swift */; };
+		27B24015281586ED005A15AF /* PagingCarouselContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B24010281586ED005A15AF /* PagingCarouselContainerView.swift */; };
+		27B24016281586ED005A15AF /* SpringButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B24011281586ED005A15AF /* SpringButton.swift */; };
+		27B24017281586ED005A15AF /* BadgedSpringButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B24012281586ED005A15AF /* BadgedSpringButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,11 +27,11 @@
 		27B23FBD280D4255005A15AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27B23FC0280D4255005A15AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		27B23FC2280D4255005A15AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		27B23FE1281585BB005A15AF /* PagingCarouselNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingCarouselNavigationView.swift; sourceTree = "<group>"; };
-		27B23FE2281585BB005A15AF /* UIViewEasyConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewEasyConstraints.swift; sourceTree = "<group>"; };
-		27B23FE3281585BB005A15AF /* PagingCarouselContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingCarouselContainerView.swift; sourceTree = "<group>"; };
-		27B23FE4281585BB005A15AF /* SpringButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringButton.swift; sourceTree = "<group>"; };
-		27B23FE5281585BB005A15AF /* BadgedSpringButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgedSpringButton.swift; sourceTree = "<group>"; };
+		27B2400E281586ED005A15AF /* PagingCarouselNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingCarouselNavigationView.swift; sourceTree = "<group>"; };
+		27B2400F281586ED005A15AF /* UIViewEasyConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewEasyConstraints.swift; sourceTree = "<group>"; };
+		27B24010281586ED005A15AF /* PagingCarouselContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingCarouselContainerView.swift; sourceTree = "<group>"; };
+		27B24011281586ED005A15AF /* SpringButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringButton.swift; sourceTree = "<group>"; };
+		27B24012281586ED005A15AF /* BadgedSpringButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgedSpringButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +64,7 @@
 		27B23FB3280D4254005A15AF /* PagingExample */ = {
 			isa = PBXGroup;
 			children = (
-				27B23FE0281585BB005A15AF /* Sources */,
+				27B2400C281586ED005A15AF /* Sources */,
 				27B23FB4280D4254005A15AF /* AppDelegate.swift */,
 				27B23FB8280D4254005A15AF /* ViewController.swift */,
 				27B23FBA280D4254005A15AF /* Main.storyboard */,
@@ -75,17 +75,25 @@
 			path = PagingExample;
 			sourceTree = "<group>";
 		};
-		27B23FE0281585BB005A15AF /* Sources */ = {
+		27B2400C281586ED005A15AF /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				27B23FE1281585BB005A15AF /* PagingCarouselNavigationView.swift */,
-				27B23FE2281585BB005A15AF /* UIViewEasyConstraints.swift */,
-				27B23FE3281585BB005A15AF /* PagingCarouselContainerView.swift */,
-				27B23FE4281585BB005A15AF /* SpringButton.swift */,
-				27B23FE5281585BB005A15AF /* BadgedSpringButton.swift */,
+				27B2400D281586ED005A15AF /* PagingNavigation */,
 			);
 			path = Sources;
 			sourceTree = SOURCE_ROOT;
+		};
+		27B2400D281586ED005A15AF /* PagingNavigation */ = {
+			isa = PBXGroup;
+			children = (
+				27B2400E281586ED005A15AF /* PagingCarouselNavigationView.swift */,
+				27B2400F281586ED005A15AF /* UIViewEasyConstraints.swift */,
+				27B24010281586ED005A15AF /* PagingCarouselContainerView.swift */,
+				27B24011281586ED005A15AF /* SpringButton.swift */,
+				27B24012281586ED005A15AF /* BadgedSpringButton.swift */,
+			);
+			path = PagingNavigation;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -158,13 +166,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27B23FEA281585BB005A15AF /* BadgedSpringButton.swift in Sources */,
+				27B24017281586ED005A15AF /* BadgedSpringButton.swift in Sources */,
 				27B23FB9280D4254005A15AF /* ViewController.swift in Sources */,
-				27B23FE7281585BB005A15AF /* UIViewEasyConstraints.swift in Sources */,
-				27B23FE9281585BB005A15AF /* SpringButton.swift in Sources */,
+				27B24014281586ED005A15AF /* UIViewEasyConstraints.swift in Sources */,
+				27B24016281586ED005A15AF /* SpringButton.swift in Sources */,
 				27B23FB5280D4254005A15AF /* AppDelegate.swift in Sources */,
-				27B23FE6281585BB005A15AF /* PagingCarouselNavigationView.swift in Sources */,
-				27B23FE8281585BB005A15AF /* PagingCarouselContainerView.swift in Sources */,
+				27B24013281586ED005A15AF /* PagingCarouselNavigationView.swift in Sources */,
+				27B24015281586ED005A15AF /* PagingCarouselContainerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
