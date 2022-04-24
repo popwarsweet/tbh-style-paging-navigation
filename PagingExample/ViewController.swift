@@ -35,6 +35,23 @@ class ViewController: UIViewController {
     self.addChild(container)
     self.view.addSubview(container.view)
     container.didMove(toParent: self)
+    
+    // fake update badge counts
+    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+      container
+        .navigationView
+        .setNavigationItems(
+          pages.map({ $0.1 }).map({
+            PagingCarouselNavigationView.Item(title: $0.title,
+                                              titleColor: $0.titleColor,
+                                              badgeOffsetFromEdge: $0.badgeOffsetFromEdge,
+                                              badgeBackgroundColor: $0.badgeBackgroundColor,
+                                              badgeTextColor: $0.badgeTextColor,
+                                              isHidden: $0.isHidden,
+                                              badgeCount: $0.badgeCount > 0 ? 0 : Int(arc4random_uniform(10)))
+          })
+        )
+    }
   }
 
 }
