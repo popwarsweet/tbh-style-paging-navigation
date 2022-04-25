@@ -5,7 +5,8 @@ import UIKit
 @objc(APFPagingCarouselContainerView)
 public class PagingCarouselContainerViewController: UIViewController {
   
-  let scrollView: UIScrollView = {
+  /// Scroll view managing scroll behavior of child view controllers and navigation items.
+  public let scrollView: UIScrollView = {
     let sv = UIScrollView()
     sv.translatesAutoresizingMaskIntoConstraints = false
     sv.isPagingEnabled = true
@@ -14,23 +15,26 @@ public class PagingCarouselContainerViewController: UIViewController {
     sv.bounces = false
     return sv
   }()
-  let navigationView: PagingCarouselNavigationView = {
+  /// The navigation view hosting badged spring buttons
+  public let navigationView: PagingCarouselNavigationView = {
     let view = PagingCarouselNavigationView()
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
-  private let contentView: UIView = {
+  /// The view containing all of the child view controllers, only here to make layout a tad easier.
+  public let contentView: UIView = {
     let view = UIView();
     view.translatesAutoresizingMaskIntoConstraints = false
     view.backgroundColor = .clear
     return view
   }()
+  /// Adjusted for easy layout of child view controllers, use safeAreaInset.top if you want to keep content below the navigation view.
   public override var additionalSafeAreaInsets: UIEdgeInsets {
     set { super.additionalSafeAreaInsets = newValue }
     get { UIEdgeInsets(top: navigationView.frame.height, left: 0, bottom: 0, right: 0) }
   }
   
-  init(childViewControllers: [UIViewController], items: [PagingCarouselNavigationView.Item]) {
+  public init(childViewControllers: [UIViewController], items: [PagingCarouselNavigationView.Item]) {
     super.init(nibName: nil, bundle: nil)
     
     guard childViewControllers.count == items.count else {

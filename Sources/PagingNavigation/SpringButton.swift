@@ -5,20 +5,20 @@ import UIKit
 @objc(APFSpringButton)
 @IBDesignable public class SpringButton: UIView {
   
-  var didTouchUpInside: ((_ sender: SpringButton) -> Void)?
+  public var didTouchUpInside: ((_ sender: SpringButton) -> Void)?
   /// Adjusts the bounds of the button's hit rect, negative values will create a larger hit rect.
-  var hitTestEdgeInsets = UIEdgeInsets.zero
+  public var hitTestEdgeInsets = UIEdgeInsets.zero
   private var textAttributes = [NSAttributedString.Key: Any]()
   /// Specify custom layer corner radius to override default rounding behavior.
   @IBInspectable
-  var customCornerRadius: CGFloat = -1 {
+  public var customCornerRadius: CGFloat = -1 {
     didSet {
       button.layer.cornerRadius = customCornerRadius
     }
   }
   
   // If intrinsicContentSize is used, minimumWidth will be respected.
-  var minimumWidth: CGFloat? = nil {
+  public var minimumWidth: CGFloat? = nil {
     didSet {
       self.invalidateIntrinsicContentSize()
     }
@@ -26,7 +26,7 @@ import UIKit
   
   /// UIButton used for layout.
   @objc
-  let button: UIButton = {
+  public let button: UIButton = {
     let button = UIButton()
     button.translatesAutoresizingMaskIntoConstraints = false
     button.isUserInteractionEnabled = false
@@ -36,7 +36,7 @@ import UIKit
   /// Convenience setter for settings all edges of hitTestEdgeInsets at once.
   @IBInspectable
   @objc
-  var hitTestPadding: CGFloat = 0 {
+  public var hitTestPadding: CGFloat = 0 {
     didSet {
       hitTestEdgeInsets = UIEdgeInsets(top: hitTestPadding,
                                        left: hitTestPadding,
@@ -46,7 +46,7 @@ import UIKit
   }
   
   @IBInspectable
-  var imageToTextPadding: CGFloat {
+  public var imageToTextPadding: CGFloat {
     set {
       button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -newValue, bottom: 0, right: newValue)
     }
@@ -56,7 +56,7 @@ import UIKit
   }
   
   @IBInspectable
-  var isImageTextPositionInverted: Bool = false {
+  public var isImageTextPositionInverted: Bool = false {
     didSet {
       if isImageTextPositionInverted {
         button.transform = CGAffineTransform(scaleX: -1, y: 1)
@@ -71,7 +71,7 @@ import UIKit
   }
   
   @IBInspectable
-  var leftAndRightPadding: CGFloat = 0 {
+  public var leftAndRightPadding: CGFloat = 0 {
     didSet {
       self.invalidateIntrinsicContentSize()
     }
@@ -79,7 +79,7 @@ import UIKit
   
   @IBInspectable
   @objc
-  var buttonBackgroundColor: UIColor? {
+  public var buttonBackgroundColor: UIColor? {
     set {
       button.backgroundColor = newValue
     }
@@ -90,7 +90,7 @@ import UIKit
   
   @IBInspectable
   @objc
-  var textColor: UIColor {
+  public var textColor: UIColor {
     set {
       textAttributes[.foregroundColor] = newValue
       resetTextForUpdatedAttributes()
@@ -103,14 +103,14 @@ import UIKit
   
   @IBInspectable
   @objc
-  var text: String? = "" {
+  public var text: String? = "" {
     didSet {
       resetTextForUpdatedAttributes()
     }
   }
   
   @IBInspectable
-  var imageName: String? {
+  public var imageName: String? {
     didSet {
       if let imageName = imageName {
         let image = UIImage(named: imageName)
@@ -123,7 +123,7 @@ import UIKit
   }
   
   @IBInspectable
-  var disabledAlpha: CGFloat = 0.5
+  public var disabledAlpha: CGFloat = 0.5
   
   public override var isUserInteractionEnabled: Bool {
     didSet {
@@ -134,7 +134,7 @@ import UIKit
   }
   
   @objc
-  var font: UIFont {
+  public var font: UIFont {
     set {
       textAttributes[.font] = newValue
       resetTextForUpdatedAttributes()
@@ -145,7 +145,7 @@ import UIKit
     }
   }
   
-  var attributedTitle: NSAttributedString? {
+  public var attributedTitle: NSAttributedString? {
     if let labelText = self.text {
       let string = NSAttributedString(string: labelText, attributes: textAttributes)
       return string
@@ -168,12 +168,12 @@ import UIKit
     button.pinEdgesToSuperview()
   }
   
-  override init(frame: CGRect) {
+  override public init(frame: CGRect) {
     super.init(frame: frame)
     commonInit()
   }
   
-  required init?(coder aDecoder: NSCoder) {
+  required public init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     commonInit()
   }

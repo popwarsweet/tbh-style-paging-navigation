@@ -3,12 +3,12 @@
 import UIKit
 
 @objc(APFPagingCarouselNavigationView)
-open class PagingCarouselNavigationView: UIView {
+public class PagingCarouselNavigationView: UIView {
   
   // MARK: - NavigationItem
 
   @objc(APFNavigationItem)
-  open class Item: NSObject {
+  public class Item: NSObject {
     let title: String
     let titleColor: UIColor
     let badgeAlignment: BadgedSpringButton.Alignment
@@ -19,13 +19,13 @@ open class PagingCarouselNavigationView: UIView {
     let badgeCount: Int
     
     @objc
-    init(title: String,
-         titleColor: UIColor,
-         badgeOffsetFromEdge: CGFloat,
-         badgeBackgroundColor: UIColor,
-         badgeTextColor: UIColor,
-         isHidden: Bool,
-         badgeCount: Int) {
+    public init(title: String,
+                titleColor: UIColor,
+                badgeOffsetFromEdge: CGFloat,
+                badgeBackgroundColor: UIColor,
+                badgeTextColor: UIColor,
+                isHidden: Bool,
+                badgeCount: Int) {
       self.title = title
       self.titleColor = titleColor
       self.badgeAlignment = .right
@@ -38,14 +38,14 @@ open class PagingCarouselNavigationView: UIView {
   }
   
   // Consts
-  static var instrinsicContentHeight: CGFloat {
+  static public var instrinsicContentHeight: CGFloat {
     return 44
   }
-  open override var intrinsicContentSize: CGSize {
+  public override var intrinsicContentSize: CGSize {
     return CGSize(width: UIView.noIntrinsicMetric, height: Self.instrinsicContentHeight)
   }
   //
-  let itemsContainer: UIView = {
+  private let itemsContainer: UIView = {
     let view = UIView()
     view.translatesAutoresizingMaskIntoConstraints = false
     view.backgroundColor = .clear
@@ -59,8 +59,8 @@ open class PagingCarouselNavigationView: UIView {
     view.isUserInteractionEnabled = false
     return view
   }()
-  var itemContainerTopConstraint: NSLayoutConstraint?
-  var itemContainerTopPadding: CGFloat = 0 {
+  private var itemContainerTopConstraint: NSLayoutConstraint?
+  private var itemContainerTopPadding: CGFloat = 0 {
     didSet {
       if let constraint = itemContainerTopConstraint {
         constraint.constant = itemContainerTopPadding
@@ -68,8 +68,8 @@ open class PagingCarouselNavigationView: UIView {
       }
     }
   }
-  var bottomBorderHeightConstraint: NSLayoutConstraint!
-  var bottomBorderHeight: CGFloat {
+  private var bottomBorderHeightConstraint: NSLayoutConstraint!
+  public var bottomBorderHeight: CGFloat {
     set {
       bottomBorderHeightConstraint.constant = newValue
       self.layoutIfNeeded()
@@ -85,33 +85,33 @@ open class PagingCarouselNavigationView: UIView {
   // TODO: Y origins are now managed by constraints, we can use [[Int]] here instead of [[CGPoint]]
   private(set) var itemPositions = [[CGPoint]]()
   /// The minimum padding allowed between each item on screen.
-  var minimumInteritemPadding: CGFloat = 12 {
+  public var minimumInteritemPadding: CGFloat = 12 {
     didSet {
       // TODO: Update layout.
     }
   }
   /// The padding used on the edges of the view if greater than `minimumInteritemPadding` is available between items.
-  var maximumEdgePadding: CGFloat = 14 {
+  public var maximumEdgePadding: CGFloat = 14 {
     didSet {
       // TODO: Update layout.
     }
   }
   /// The minimum opacity of items when pushed from center.
-  var minimumOpacity = 0.25
+  public var minimumOpacity = 0.25
   /// The maximum count of characters before a label will be truncated.
-  var maximumCountOfCharacters = 15
+  public var maximumCountOfCharacters = 15
   /// The count of characters that the text will be truncated to if max count is reached.
-  var truncationCharacterCount = 7
+  public var truncationCharacterCount = 7
   /// The items currently being managed by the navigation view.
   private(set) var items = [BadgedSpringButton]()
-  /// The navigation items.
-  private var navigationItems = [Item]()
+  /// The navigation items. Use `setNavigationItems` to update them.
+  private(set) var navigationItems = [Item]()
   /// The scroll view that is adjusting layout of items.
-  weak var scrollView: UIScrollView?
+  private weak var scrollView: UIScrollView?
   /// Called when the user taps one of the navigation items.
-  var didTapItem: ((Int) -> Void)?
+  public var didTapItem: ((Int) -> Void)?
   /// A view to be placed on the leftmost edge of the navigation view. It will be scroll with the navigationItems but will not be able to be centered like normal item.
-  var leftNavigationItem: UIView? {
+  public var leftNavigationItem: UIView? {
     didSet {
       // Clean up old view.
       leftNavigationItemLeadingEdgeConstraint = nil
@@ -129,7 +129,7 @@ open class PagingCarouselNavigationView: UIView {
   }
   private var leftNavigationItemLeadingEdgeConstraint: NSLayoutConstraint?
   
-  open override var bounds: CGRect {
+  public override var bounds: CGRect {
     didSet {
       // Update origin constraints if width changes.
       if oldValue.width != bounds.width {
@@ -154,7 +154,7 @@ open class PagingCarouselNavigationView: UIView {
     itemContainerTopConstraint = itemsContainer.pinTopToSuperview(itemContainerTopPadding)
   }
   
-  override init(frame: CGRect) {
+  override public init(frame: CGRect) {
     super.init(frame: frame)
     commonInit()
   }
@@ -235,7 +235,7 @@ open class PagingCarouselNavigationView: UIView {
   // MARK: - Updating items
   
   @objc
-  func setNavigationItems(_ navigationItems: [Item]) {
+  public func setNavigationItems(_ navigationItems: [Item]) {
     var titles = navigationItems.map { $0.title }
     let currentTitles = self.navigationItems.map { $0.title }
     
@@ -332,7 +332,7 @@ open class PagingCarouselNavigationView: UIView {
   
   // MARK: - Hit test
   
-  open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+  public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
     var navigationButtons: [UIView] = items
     if let leftNavigationItem = leftNavigationItem {
       navigationButtons.append(leftNavigationItem)
@@ -353,7 +353,7 @@ open class PagingCarouselNavigationView: UIView {
 // MARK: - Layout updates
 
 extension PagingCarouselNavigationView {
-  func updateVisualDisplay(forScrollPosition position: CGPoint, scrollViewBounds: CGRect) {
+  private func updateVisualDisplay(forScrollPosition position: CGPoint, scrollViewBounds: CGRect) {
     guard items.count > 0 else { return }
     guard scrollViewBounds.size.equalTo(.zero) == false else { return }
     

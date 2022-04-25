@@ -4,39 +4,39 @@ import UIKit
 
 public class BadgedSpringButton: SpringButton {
   // Appearance
-  var badgeHeight: CGFloat = 18 {
+  public var badgeHeight: CGFloat = 18 {
     didSet {
       badgeHeightConstraint.constant = badgeHeight
       badgeView.layer.cornerRadius = badgeHeight/2
       self.layoutIfNeeded()
     }
   }
-  var topOffset: CGFloat = -9 {
+  public var topOffset: CGFloat = -9 {
     didSet {
       topConstraint.constant = topOffset
       self.layoutIfNeeded()
     }
   }
-  var rightOffset: CGFloat = -8 {
+  public var rightOffset: CGFloat = -8 {
     didSet {
       rightConstraint.constant = rightOffset
       self.layoutIfNeeded()
     }
   }
-  var leftOffset: CGFloat = 8 {
+  public var leftOffset: CGFloat = 8 {
     didSet {
       leftConstraint.constant = leftOffset
       self.layoutIfNeeded()
     }
   }
-  var minimumBadgeWidth: CGFloat = 20
+  public var minimumBadgeWidth: CGFloat = 20
   
   // Constraints
-  var badgeHeightConstraint: NSLayoutConstraint!
-  var badgeWidthConstraint: NSLayoutConstraint!
-  var topConstraint: NSLayoutConstraint!
-  var rightConstraint: NSLayoutConstraint!
-  var leftConstraint: NSLayoutConstraint!
+  private var badgeHeightConstraint: NSLayoutConstraint!
+  private var badgeWidthConstraint: NSLayoutConstraint!
+  private var topConstraint: NSLayoutConstraint!
+  private var rightConstraint: NSLayoutConstraint!
+  private var leftConstraint: NSLayoutConstraint!
   
   private(set) lazy var badgeViewContainer: UIView = { [unowned self] in
     let view = UIView()
@@ -64,7 +64,7 @@ public class BadgedSpringButton: SpringButton {
     return label
     }()
   
-  var badgeCount: Int = 0 {
+  public var badgeCount: Int = 0 {
     didSet {
       if badgeCount > 99 {
         badgeLabel.text = "99+"
@@ -84,7 +84,7 @@ public class BadgedSpringButton: SpringButton {
   }
   
   // Experimental, will mask underlying label
-  var masksImageViewBorder: Bool = false
+  private var masksImageViewBorder: Bool = false
   
   
   // MARK: - Init
@@ -104,12 +104,12 @@ public class BadgedSpringButton: SpringButton {
     hideBadge(animated: false)
   }
   
-  override init(frame: CGRect) {
+  override public init(frame: CGRect) {
     super.init(frame: frame)
     commonInit()
   }
   
-  required init?(coder aDecoder: NSCoder) {
+  required public init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     commonInit()
   }
@@ -117,10 +117,10 @@ public class BadgedSpringButton: SpringButton {
   
   // MARK: - View setup
   
-  enum Alignment {
+  public enum Alignment {
     case left, right
   }
-  func setAlignment(_ alignment: Alignment) {
+  public func setAlignment(_ alignment: Alignment) {
     switch alignment {
     case .left:
       leftConstraint.isActive = true
@@ -158,7 +158,7 @@ public class BadgedSpringButton: SpringButton {
   
   // Show/hide badge
   
-  func showBadge(animated: Bool = true) {
+  public func showBadge(animated: Bool = true) {
     self.button.bringSubviewToFront(badgeViewContainer)
     badgeViewContainer.alpha = 1
     if animated {
@@ -178,7 +178,7 @@ public class BadgedSpringButton: SpringButton {
     }
   }
   
-  func hideBadge(animated: Bool = true) {
+  public func hideBadge(animated: Bool = true) {
     if animated {
       UIView.animate(
         withDuration: 0.25,
