@@ -47,6 +47,7 @@ public class PagingCarouselContainerViewController: UIViewController {
     scrollView.addSubview(contentView)
     
     self.view.addSubview(navigationView)
+    navigationView.scrollView = scrollView
     navigationView.setNavigationItems(items)
     navigationView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
     navigationView.pinEdgesToSuperview(edges: [.left, .right], padding: .zero, priority: .required)
@@ -100,6 +101,18 @@ public class PagingCarouselContainerViewController: UIViewController {
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  // MARK: - Navigation Updates
+  
+  public func setNavigationItems(_ navigationItems: [PagingCarouselNavigationView.Item]) {
+    guard navigationItems.count == self.children.count else {
+      assertionFailure("navigationItems.count != self.children.count")
+      return
+    }
+    
+    navigationView.setNavigationItems(navigationItems)
+    registerNavigationTouchEvents(scrollView: scrollView, navigationView: navigationView)
   }
   
   private func registerNavigationTouchEvents(scrollView: UIScrollView, navigationView: PagingCarouselNavigationView) {

@@ -107,7 +107,7 @@ public class PagingCarouselNavigationView: UIView {
   /// The navigation items. Use `setNavigationItems` to update them.
   private(set) var navigationItems = [Item]()
   /// The scroll view that is adjusting layout of items.
-  private weak var scrollView: UIScrollView?
+  public weak var scrollView: UIScrollView?
   /// Called when the user taps one of the navigation items.
   public var didTapItem: ((Int) -> Void)?
   /// A view to be placed on the leftmost edge of the navigation view. It will be scroll with the navigationItems but will not be able to be centered like normal item.
@@ -190,7 +190,8 @@ public class PagingCarouselNavigationView: UIView {
         let yOrigin = (self.itemsContainer.bounds.height - items[i].bounds.height) / 2
         if k < i - 1 {
           // Push all views less than i - 1 offscreen to the left.
-          itemPositions[k][i] = CGPoint(x: -(items[k].bounds.width * 1.5), y: yOrigin)
+          let badgeWidthMinusPeek = items[k].badgeWidthConstraint.constant - 6
+          itemPositions[k][i] = CGPoint(x: -(items[k].bounds.width + badgeWidthMinusPeek), y: yOrigin)
         } else if k == i - 1 {
           // Push item to left of center view, ensuring that it's not passed the maximumEdgePadding.
           let leftOfCenterItem = items[k]
@@ -210,7 +211,7 @@ public class PagingCarouselNavigationView: UIView {
                                         y: yOrigin)
         } else if k > i + 1 {
           // Push all views greater than i + 1 offscreen to the right.
-          itemPositions[k][i] = CGPoint(x: self.bounds.width + 1.5 * items[i].bounds.width,
+          itemPositions[k][i] = CGPoint(x: self.bounds.width + 15 + items[i].bounds.width,
                                         y: yOrigin)
         }
       }
@@ -235,27 +236,8 @@ public class PagingCarouselNavigationView: UIView {
   // MARK: - Updating items
   
   @objc
-  public func setNavigationItems(_ navigationItems: [Item]) {
+  internal func setNavigationItems(_ navigationItems: [Item]) {
     var titles = navigationItems.map { $0.title }
-    let currentTitles = self.navigationItems.map { $0.title }
-    
-    // If all the titles are the same, we can just update badge count and return.
-    if titles == currentTitles, titles.count == items.count {
-      for counter in 0..<items.count {
-        let button = items[counter]
-        let badgeCount = navigationItems[counter].badgeCount
-        
-        button.badgeCount = badgeCount
-        
-        // Show badge if there's a count.
-        if badgeCount > 0 {
-          button.showBadge(animated: false)
-        } else {
-          button.hideBadge(animated: false)
-        }
-      }
-      return
-    }
     
     // Size all items.
     for i in 0..<titles.count {
@@ -372,7 +354,7 @@ extension PagingCarouselNavigationView {
     let leftPage = Int(floor(currentPageFloat))
     let rightPage = Int(ceil(currentPageFloat))
     
-    // Get the percent of the page that has been scroll offscreen, we'll use this to interpolate between the two positions of the title items.
+    // Get the percent of the page that has been scrolled offscreen, we'll use this to interpolate between the two positions of the title items.
     let pointsOverPage = xOffset - (CGFloat(currentPage) * scrollViewBounds.width)
     let percentageOverLeftPage = pointsOverPage / scrollViewBounds.width
     

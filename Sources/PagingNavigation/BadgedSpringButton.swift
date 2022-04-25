@@ -32,8 +32,8 @@ public class BadgedSpringButton: SpringButton {
   public var minimumBadgeWidth: CGFloat = 20
   
   // Constraints
+  private(set) var badgeWidthConstraint: NSLayoutConstraint!
   private var badgeHeightConstraint: NSLayoutConstraint!
-  private var badgeWidthConstraint: NSLayoutConstraint!
   private var topConstraint: NSLayoutConstraint!
   private var rightConstraint: NSLayoutConstraint!
   private var leftConstraint: NSLayoutConstraint!
