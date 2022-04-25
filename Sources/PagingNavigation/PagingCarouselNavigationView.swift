@@ -9,14 +9,14 @@ public class PagingCarouselNavigationView: UIView {
 
   @objc(APFNavigationItem)
   public class Item: NSObject {
-    let title: String
-    let titleColor: UIColor
-    let badgeAlignment: BadgedSpringButton.Alignment
-    let badgeOffsetFromEdge: CGFloat
-    let badgeBackgroundColor: UIColor
-    let badgeTextColor: UIColor
-    let isHidden: Bool
-    let badgeCount: Int
+    public let title: String
+    public let titleColor: UIColor
+    public let badgeAlignment: BadgedSpringButton.Alignment
+    public let badgeOffsetFromEdge: CGFloat
+    public let badgeBackgroundColor: UIColor
+    public let badgeTextColor: UIColor
+    public let isHidden: Bool
+    public let badgeCount: Int
     
     @objc
     public init(title: String,
