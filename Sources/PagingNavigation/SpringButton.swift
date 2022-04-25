@@ -3,7 +3,7 @@
 import UIKit
 
 @objc(APFSpringButton)
-@IBDesignable class SpringButton: UIView {
+@IBDesignable public class SpringButton: UIView {
   
   var didTouchUpInside: ((_ sender: SpringButton) -> Void)?
   /// Adjusts the bounds of the button's hit rect, negative values will create a larger hit rect.
@@ -125,7 +125,7 @@ import UIKit
   @IBInspectable
   var disabledAlpha: CGFloat = 0.5
   
-  override var isUserInteractionEnabled: Bool {
+  public override var isUserInteractionEnabled: Bool {
     didSet {
       self.alpha = isUserInteractionEnabled
         ? 1
@@ -181,7 +181,7 @@ import UIKit
   
   // MARK: - Layout
   
-  override func layoutSubviews() {
+  public override func layoutSubviews() {
     super.layoutSubviews()
     // Default to half-height if customCornerRadius is -1 (default value).
     button.layer.cornerRadius = customCornerRadius == -1
@@ -189,7 +189,7 @@ import UIKit
       : customCornerRadius
   }
   
-  override var intrinsicContentSize: CGSize {
+  public override var intrinsicContentSize: CGSize {
     let width: CGFloat
     let buttonWidth = button.intrinsicContentSize.width + imageToTextPadding
     
@@ -203,18 +203,18 @@ import UIKit
                   height: button.intrinsicContentSize.height)
   }
   
-  override func sizeThatFits(_ size: CGSize) -> CGSize {
+  public override func sizeThatFits(_ size: CGSize) -> CGSize {
     return self.intrinsicContentSize
   }
   
   
   // MARK: - Gesture Handling
   
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+  public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     animateToPressedState()
   }
   
-  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+  public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     animatedToDefaultState()
     // Notify listener on touch up inside.
     if let touch = touches.first, pointIsInsideModifiedHitRegion(touch.location(in: self)) {
@@ -222,7 +222,7 @@ import UIKit
     }
   }
   
-  override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+  public override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
     animatedToDefaultState()
   }
   
@@ -269,7 +269,7 @@ import UIKit
     return hitFrame.contains(point)
   }
   
-  override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+  public override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
     if hitTestEdgeInsets == UIEdgeInsets.zero || self.isHidden {
       return super.point(inside: point, with: event)
     }

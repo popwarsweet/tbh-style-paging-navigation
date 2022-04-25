@@ -3,12 +3,12 @@
 import UIKit
 
 @objc(APFPagingCarouselNavigationView)
-class PagingCarouselNavigationView: UIView {
+open class PagingCarouselNavigationView: UIView {
   
   // MARK: - NavigationItem
 
   @objc(APFNavigationItem)
-  class Item: NSObject {
+  open class Item: NSObject {
     let title: String
     let titleColor: UIColor
     let badgeAlignment: BadgedSpringButton.Alignment
@@ -41,7 +41,7 @@ class PagingCarouselNavigationView: UIView {
   static var instrinsicContentHeight: CGFloat {
     return 44
   }
-  override var intrinsicContentSize: CGSize {
+  open override var intrinsicContentSize: CGSize {
     return CGSize(width: UIView.noIntrinsicMetric, height: Self.instrinsicContentHeight)
   }
   //
@@ -129,7 +129,7 @@ class PagingCarouselNavigationView: UIView {
   }
   private var leftNavigationItemLeadingEdgeConstraint: NSLayoutConstraint?
   
-  override var bounds: CGRect {
+  open override var bounds: CGRect {
     didSet {
       // Update origin constraints if width changes.
       if oldValue.width != bounds.width {
@@ -159,7 +159,7 @@ class PagingCarouselNavigationView: UIView {
     commonInit()
   }
   
-  required init?(coder aDecoder: NSCoder) {
+  required public init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     commonInit()
   }
@@ -284,7 +284,7 @@ class PagingCarouselNavigationView: UIView {
                                               bottom: -20,
                                               right: -minimumInteritemPadding / 2)
       button.didTouchUpInside = { [unowned self] btn in
-        guard let buttonIndex = self.items.index(of: (btn as! BadgedSpringButton)) else { return }
+        guard let buttonIndex = self.items.firstIndex(of: (btn as! BadgedSpringButton)) else { return }
         self.didTapItem?(buttonIndex)
       }
       button.sizeToFit()
@@ -332,7 +332,7 @@ class PagingCarouselNavigationView: UIView {
   
   // MARK: - Hit test
   
-  override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+  open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
     var navigationButtons: [UIView] = items
     if let leftNavigationItem = leftNavigationItem {
       navigationButtons.append(leftNavigationItem)

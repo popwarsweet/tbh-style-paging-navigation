@@ -2,7 +2,7 @@
 
 import UIKit
 
-class BadgedSpringButton: SpringButton {
+public class BadgedSpringButton: SpringButton {
   // Appearance
   var badgeHeight: CGFloat = 18 {
     didSet {

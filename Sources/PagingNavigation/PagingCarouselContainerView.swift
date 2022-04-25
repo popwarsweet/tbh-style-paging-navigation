@@ -3,7 +3,7 @@
 import UIKit
 
 @objc(APFPagingCarouselContainerView)
-class PagingCarouselContainerViewController: UIViewController {
+public class PagingCarouselContainerViewController: UIViewController {
   
   let scrollView: UIScrollView = {
     let sv = UIScrollView()
@@ -25,7 +25,7 @@ class PagingCarouselContainerViewController: UIViewController {
     view.backgroundColor = .clear
     return view
   }()
-  override var additionalSafeAreaInsets: UIEdgeInsets {
+  public override var additionalSafeAreaInsets: UIEdgeInsets {
     set { super.additionalSafeAreaInsets = newValue }
     get { UIEdgeInsets(top: navigationView.frame.height, left: 0, bottom: 0, right: 0) }
   }
@@ -111,28 +111,28 @@ class PagingCarouselContainerViewController: UIViewController {
 }
 
 extension PagingCarouselContainerViewController: UIScrollViewDelegate {
-  override func viewDidLayoutSubviews() {
+  public override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     navigationView.scrollViewBoundsDidChange(scrollView: scrollView)
   }
   
-  func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+  public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
     navigationView.containerDidBeginScrolling(scrollView: scrollView)
   }
   
-  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+  public func scrollViewDidScroll(_ scrollView: UIScrollView) {
     navigationView.containerDidScroll(scrollView: scrollView)
   }
   
-  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+  public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
     navigationView.containerDidEndScrolling(scrollView: scrollView)
   }
   
-  func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+  public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
     navigationView.containerDidEndScrolling(scrollView: scrollView)
   }
   
-  func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+  public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
     if decelerate == false {
       navigationView.containerDidEndScrolling(scrollView: scrollView)
     }
